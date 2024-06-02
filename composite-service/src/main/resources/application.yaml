@@ -31,6 +31,13 @@ resilience4j:
         wait-duration-in-open-state: 5s
         failure-rate-threshold: 50
         event-consumer-buffer-size: 10
+    instances:
+      package:
+        base-config: default
+        wait-duration-in-open-state: 10s
+      user:
+        base-config: default
+        wait-duration-in-open-state: 5s
   retry:
     instances:
       default:
@@ -40,7 +47,7 @@ resilience4j:
 
 logging:
   level:
-    root: DEBUG
+    root: info
     com:
       netflix:
         eureka: DEBUG

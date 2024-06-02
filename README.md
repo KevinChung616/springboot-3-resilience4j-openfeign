@@ -4,12 +4,12 @@
 ## Architecture
 ![Architecture Diagram](architecture.png)
 
-| Service Name      | Role               | Purpose                                                                                                                                                                                                                                                                                                                                          | Port | Note |
-|-------------------|--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------|------|
-| Eureka Server     | Service Resigistry | Eureka Server is a service registry that helps manage service discovery and registration in microservices architectures                                                                                                                                                                                                                          | 8761 |      |
-| Composite Service | Composite Service  | Composite/integration services are coarse-grained(relative to atomic services), independent from each other and contains business logic(routing, what services to call, how to do data type mapping etc.) and network communication logic(inter-service communication through various protocols, resiliency behaviors such as circuit breakers). | 8080 |      |
-| User Service      | Core Service       | fine-grained self-contained services (no external service dependencies)that mostly comprise of the business logic and less or no network communication logic                                                                                                                                                                                     | 8083 |      |
-| Package Servuce   | Core Service       | fine-grained self-contained services (no external service dependencies) that mostly comprise of the business logic and less or no network communication logic                                                                                                                                                                                    | 8082 |      |
+| Service Name      | Role              | Purpose                                                                                                                                                                                                                                                                                                                                          | Port | Note |
+|-------------------|-------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------|------|
+| Eureka Server     | Service Registry  | Eureka Server is a service registry that helps manage service discovery and registration in microservices architectures                                                                                                                                                                                                                          | 8761 |      |
+| Composite Service | Composite Service | Composite/integration services are coarse-grained(relative to atomic services), independent from each other and contains business logic(routing, what services to call, how to do data type mapping etc.) and network communication logic(inter-service communication through various protocols, resiliency behaviors such as circuit breakers). | 8080 |      |
+| User Service      | Core Service      | fine-grained self-contained services (no external service dependencies)that mostly comprise of the business logic and less or no network communication logic                                                                                                                                                                                     | 8083 |      |
+| Package Service   | Core Service      | fine-grained self-contained services (no external service dependencies) that mostly comprise of the business logic and less or no network communication logic                                                                                                                                                                                    | 8082 |      |
 
 **Illustration of Core Service and Composite Service**
 
@@ -117,10 +117,10 @@ We need to use following since we did not set json properties to change name
 ```
 Reference: 
 > Hello Folks,
-Today I faced the same issue and i found the solution.
+Today I faced the same issue and I found the solution.
 The problem with my code snippet was,have passed null value for ID attribute.
 public String getId(@PathVariable("id") long id)
-so while making the feign request, url path variable attribute is not getting replaced with pathVariable(ID) rather then replacing the actual id value.
+so while making the feign request, url path variable attribute is not getting replaced with pathVariable(ID) rather than replacing the actual id value.
 When id as null -> http://SomeService/{id}
 When id as proper value -> id = 123 ->http://SomeService/123.
 Correct me, if am wrong @spencergibb
