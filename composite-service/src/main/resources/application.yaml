@@ -2,14 +2,52 @@ spring:
   application:
     name: COMPOSITE-SERVICE
 
+## Eureka Client Configs
 eureka:
   client:
     register-with-eureka: true
-    fetch-registry: false
+    fetch-registry: true
     service-url:
       defaultZone: http://localhost:8761/eureka
   instance:
     hostname: localhost
 
+# Server Configs
 server:
   port: 8080
+
+## Resilience4j Configs
+resilience4j:
+  circuitbreaker:
+    metrics:
+      enabled: true
+  retry:
+    instances:
+      default:
+        max-attempts: 5
+        wait-duration: 500
+        enable-exponential-backoff: true
+
+logging:
+  level:
+    root: DEBUG
+    com:
+      netflix:
+        eureka: DEBUG
+        discovery: DEBUG
+    feign: DEBUG
+    org:
+      springframework:
+        cloud:
+              openfeign: DEBUG
+
+## Spring Actuator Management
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      base-path: /actuator
+  endpoint:
+    health:
+      show-details: always
