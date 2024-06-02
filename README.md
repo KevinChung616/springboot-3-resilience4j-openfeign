@@ -25,6 +25,65 @@
 + Spring AOP
 
 
+## Resilience4j Config Explanation
+```yaml
+resilience4j:
+  circuitbreaker:
+    metrics:
+      enabled: true
+    configs:
+      default:
+        register-health-indicator: true
+        sliding-window-size: 10
+        minimum-number-of-calls: 5
+        permitted-number-of-calls-in-half-open-state: 3
+        automatic-transition-from-open-to-half-open-enabled: true
+        wait-duration-in-open-state: 5s
+        failure-rate-threshold: 50
+        event-consumer-buffer-size: 10
+```
+
+**metrics.enabled**
+Description: Enables the collection of metrics for the Circuit Breaker.
+Value: true (Metrics are enabled).
+
+**configs.default**
+This section defines the default configuration for the Circuit Breaker. You can have multiple configurations, but here we're focusing on the default one.
+
+**register-health-indicator**
++ Description: Registers a health indicator for the Circuit Breaker which can be used by monitoring systems to check the health status.
++ Value: true (Health indicator is registered).
+
+**sliding-window-size**
++ Description: Defines the size of the sliding window which is used to record the outcome of calls.
++ Value: 10 (The last 10 calls are considered).
+
+**minimum-number-of-calls**
++ Description: The minimum number of calls that must be made before the Circuit Breaker can calculate the failure rate.
++ Value: 5 (At least 5 calls must be made).
+
+**permitted-number-of-calls-in-half-open-state**
++ Description: The number of calls that are allowed when the Circuit Breaker is in the half-open state.
++ Value: 3 (Up to 3 calls are allowed to test if the external service has recovered).
+
+**automatic-transition-from-open-to-half-open-enabled**
++ Description: Enables automatic transition from open to half-open state after the wait-duration-in-open-state has passed.
++ Value: true (Automatic transition is enabled).
+
+**wait-duration-in-open-state**
++ Description: The time that the Circuit Breaker should wait before transitioning from open to half-open state.
++ Value: 5s (Wait for 5 seconds).
+
+**failure-rate-threshold**
++ Description: The failure rate threshold above which the Circuit Breaker will open.
++ Value: 50 (If 50% or more of the calls fail, the Circuit Breaker opens).
+
+**event-consumer-buffer-size**
++ Description: The size of the buffer for storing events (like state transitions and failed calls) for event consumers.
++ Value: 10 (Buffer can store up to 10 events).
+
+Reference: https://resilience4j.readme.io/docs/circuitbreaker
+
 ## Common Q & A 
 Q: When A calls B from `OpenFeign`, No servers available for service: B-SERVICE
 
