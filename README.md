@@ -84,6 +84,12 @@ This section defines the default configuration for the Circuit Breaker. You can 
 
 Reference: https://resilience4j.readme.io/docs/circuitbreaker
 
+## Optional: One Project, Many Spring Boot Instances
+Click IntelliJ `Edit Run Config`, select `+` to add instances based on target main class
+![](SpringBoot EditConfig.png)
+Reference: https://stackoverflow.com/questions/58348457/running-two-spring-boot-instances
+Change the port in the `vm options` to avoid port conflict
+![](port change.png)
 ## Common Q & A 
 Q: When A calls B from `OpenFeign`, No servers available for service: B-SERVICE
 
