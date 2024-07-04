@@ -44,10 +44,26 @@ resilience4j:
         max-attempts: 5
         wait-duration: 500
         enable-exponential-backoff: true
+  timelimiter:
+    instances:
+      default:
+        timeout-duration: 2s
+  ratelimiter:
+    instances:
+      default:
+        limitForPeriod: 10
+        limitRefreshPeriod: 1s
+        timeoutDuration: 500ms
+  bulkhead:
+    instances:
+      default:
+        maxConcurrentCalls: 5
+        maxWaitDuration: 100ms
 
 logging:
   level:
     root: info
+    io.github.resilience4j.retry: DEBUG
     com:
       netflix:
         eureka: DEBUG
@@ -57,6 +73,8 @@ logging:
       springframework:
         cloud:
               openfeign: DEBUG
+
+
 
 ## Spring Actuator Management
 management:

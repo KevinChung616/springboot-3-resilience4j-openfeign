@@ -1,5 +1,7 @@
 # Getting Started
 
+## Description
+
 
 ## Architecture
 ![Architecture Diagram](architecture.png)

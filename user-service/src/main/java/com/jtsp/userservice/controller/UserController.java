@@ -17,4 +17,18 @@ public class UserController {
         return ResponseEntity.ok("copy user name is John with id empty");
     }
 
+    @GetMapping("/timeout")
+    public ResponseEntity<String> getUserTimeout() throws InterruptedException {
+        Thread.sleep(5000);
+        return ResponseEntity.ok("copy user name is John with timeout");
+    }
+
+    @GetMapping("/within-timeout")
+    public ResponseEntity<String> getUserWithinTimeout() throws InterruptedException {
+        return ResponseEntity.ok("copy user name is John within timeout threshold");
+    }
+
+
+
+
 }
